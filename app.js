@@ -48,7 +48,6 @@ var cors_1 = __importDefault(require("cors"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var user_route_1 = __importDefault(require("./src/router/user/user-route"));
 var meeting_route_1 = __importDefault(require("./src/router/meeting/meeting-route"));
-var peer_1 = require("peer");
 var meeting_1 = require("./src/model/meeting/meeting");
 var roomMessage_1 = require("./src/model/roomMessages/roomMessage");
 // app config
@@ -81,10 +80,13 @@ var io = require('socket.io')(server, {
     }
 });
 // peer server config
-peer_1.PeerServer({ port: 9000, path: '/peerjs' });
-// app.use('/peerjs', peerServer);
+var ExpressPeerServer = require('peer').ExpressPeerServer;
+var peer = express_1.default();
+var expressPort = 9000;
+var expressServer = peer.listen(expressPort);
+var peerServer = ExpressPeerServer(expressServer);
+app.use('/peerjs', peerServer);
 var rooms = [];
-var users = [];
 // socket connection 
 io.use(function (socket, next) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {

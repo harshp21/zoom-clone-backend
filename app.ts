@@ -49,12 +49,15 @@ const io = require('socket.io')(server, {
 
 
 // peer server config
-PeerServer({ port: 9000, path: '/peerjs' });
-// app.use('/peerjs', peerServer);
+const { ExpressPeerServer } = require('peer');
+const peer = express();
+const expressPort = 9000;
+const expressServer = peer.listen(expressPort);
+const peerServer = ExpressPeerServer(expressServer);
+peer.use('/peerjs', peerServer);
 
 
 let rooms = [];
-let users = [];
 
 // socket connection 
 io.use(async (socket, next) => {
