@@ -49,12 +49,7 @@ const io = require('socket.io')(server, {
 
 
 // peer server config
-const { ExpressPeerServer } = require('peer');
-const peer = express();
-const expressPort = 9000;
-const expressServer = peer.listen(expressPort);
-const peerServer = ExpressPeerServer(expressServer);
-peer.use('/peerjs', peerServer);
+PeerServer({ path: '/peerjs' });
 
 
 let rooms = [];
