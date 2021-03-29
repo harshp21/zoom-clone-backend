@@ -85,7 +85,7 @@ var peer = express_1.default();
 var expressPort = 9000;
 var expressServer = peer.listen(expressPort);
 var peerServer = ExpressPeerServer(expressServer);
-app.use('/peerjs', peerServer);
+peer.use('/peerjs', peerServer);
 var rooms = [];
 // socket connection 
 io.use(function (socket, next) { return __awaiter(void 0, void 0, void 0, function () {
