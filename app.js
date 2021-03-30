@@ -81,7 +81,11 @@ var io = require('socket.io')(server, {
     }
 });
 // peer server config
-peer_1.PeerServer({ port: 9000, path: '/peerjs' });
+// PeerServer({ path: '/peerjs', port: 9000 });
+var peerServer = peer_1.ExpressPeerServer(server, {
+    path: '/peerjs'
+});
+app.use('/', peerServer);
 var rooms = [];
 // socket connection 
 io.use(function (socket, next) { return __awaiter(void 0, void 0, void 0, function () {

@@ -7,7 +7,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import userRoute from './src/router/user/user-route';
 import meetingRoute from './src/router/meeting/meeting-route';
-import { PeerServer } from 'peer';
+import { ExpressPeerServer } from 'peer';
 import { Meeting } from './src/model/meeting/meeting';
 import { IRoomMessage, Message } from './src/model/roomMessages/roomMessage';
 
@@ -49,8 +49,12 @@ const io = require('socket.io')(server, {
 
 
 // peer server config
-PeerServer({ path: '/peerjs' });
+// PeerServer({ path: '/peerjs', port: 9000 });
+const peerServer = ExpressPeerServer(server, {
+    path: '/peerjs'
+});
 
+app.use('/', peerServer);
 
 let rooms = [];
 
