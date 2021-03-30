@@ -71,6 +71,10 @@ mongoose_1.default.connect(connectionUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(function () { return console.log("Successfully connected to mongodb"); }).catch(function (err) { return console.log("mongo error", err); });
+var address_1 = __importDefault(require("address"));
+app.get("/", function (req, res) {
+    res.json({ message: "IP Address : " + address_1.default.ip() });
+});
 // app listen
 var server = app.listen(port, function () { return console.log("listening on port : " + port); });
 // peer server config
