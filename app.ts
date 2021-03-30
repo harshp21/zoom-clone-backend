@@ -35,12 +35,6 @@ mongoose.connect(connectionUrl, {
     useUnifiedTopology: true,
 }).then(() => console.log("Successfully connected to mongodb")).catch(err => console.log("mongo error", err));
 
-
-import address from 'address';
-app.get("/", (req, res) => {
-    res.json({ message: `IP Address : ${address.ip()}` })
-})
-
 // app listen
 const server = app.listen(port, () => console.log(`listening on port : ${port}`));
 
