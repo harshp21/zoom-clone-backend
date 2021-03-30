@@ -73,6 +73,12 @@ mongoose_1.default.connect(connectionUrl, {
 }).then(function () { return console.log("Successfully connected to mongodb"); }).catch(function (err) { return console.log("mongo error", err); });
 // app listen
 var server = app.listen(port, function () { return console.log("listening on port : " + port); });
+// peer server config
+peer_1.PeerServer({ path: '/peerjs', port: 9000 });
+// const peerServer = ExpressPeerServer(server, {
+//     path: '/peerjs'
+// });
+// app.use('/peerjs', peerServer);
 // registering a socket for server
 var io = require('socket.io')(server, {
     cors: {
@@ -80,12 +86,6 @@ var io = require('socket.io')(server, {
         methods: ["GET", "POST"]
     }
 });
-// peer server config
-// PeerServer({ path: '/peerjs', port: 9000 });
-var peerServer = peer_1.ExpressPeerServer(server, {
-    path: '/peerjs'
-});
-app.use('/', peerServer);
 var rooms = [];
 // socket connection 
 io.use(function (socket, next) { return __awaiter(void 0, void 0, void 0, function () {
