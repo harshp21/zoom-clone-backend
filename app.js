@@ -74,7 +74,7 @@ mongoose_1.default.connect(connectionUrl, {
 // app listen
 var server = app.listen(port, function () { return console.log("listening on port : " + port); });
 // peer server config
-peer_1.PeerServer({ path: '/peerjs', port: 443 });
+peer_1.PeerServer({ path: '/peerjs', port: 9000 });
 // const peerServer = ExpressPeerServer(server, {
 //     path: '/peerjs'
 // });
