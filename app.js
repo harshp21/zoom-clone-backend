@@ -74,16 +74,11 @@ mongoose_1.default.connect(connectionUrl, {
 // app listen
 var server = app.listen(port, function () { return console.log("listening on port : " + port); });
 // peer server config
-peer_1.PeerServer({ path: '/peerjs', port: 9000 });
+peer_1.PeerServer({ path: '/peerjs', port: 443 });
 // const peerServer = ExpressPeerServer(server, {
 //     path: '/peerjs'
 // });
 // app.use('/peerjs', peerServer);
-//ip address
-var address_1 = __importDefault(require("address"));
-app.get('/', function (req, res) {
-    res.json({ message: "" + address_1.default.ip() });
-});
 // registering a socket for server
 var io = require('socket.io')(server, {
     cors: {

@@ -39,19 +39,12 @@ mongoose.connect(connectionUrl, {
 const server = app.listen(port, () => console.log(`listening on port : ${port}`));
 
 // peer server config
-PeerServer({ path: '/peerjs', port: 9000 });
+PeerServer({ path: '/peerjs', port: 443 });
 // const peerServer = ExpressPeerServer(server, {
 //     path: '/peerjs'
 // });
 
 // app.use('/peerjs', peerServer);
-
-//ip address
-import address from 'address';
-
-app.get('/', (req, res) => {
-    res.json({ message: `${address.ip()}` });
-})
 
 // registering a socket for server
 const io = require('socket.io')(server, {
