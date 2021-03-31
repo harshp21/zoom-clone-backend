@@ -46,13 +46,6 @@ PeerServer({ path: '/peerjs', port: 9000 });
 
 // app.use('/peerjs', peerServer);
 
-//ip address
-import address from 'address';
-
-app.get('/', (req, res) => {
-    res.json({ message: `${address.ip()}` });
-})
-
 // registering a socket for server
 const io = require('socket.io')(server, {
     cors: {
